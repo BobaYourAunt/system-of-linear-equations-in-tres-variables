@@ -1,6 +1,0 @@
-plan for first hackathon:
-- list all data structures and their uses/attributes, then see if any of them are usable on java and applicable to the project
-- solve a linear equation that has tres variables
-- come up with methods that can break down any equation and solve it 
-- linear regression????
-- also for extra practice, write down big O notation for chunky functions/loops and stuff
