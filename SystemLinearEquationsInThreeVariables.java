@@ -4,10 +4,6 @@ import java.util.Arrays;
 public class SystemLinearEquationsInThreeVariables {
     int[][] systemOfEquations;
 
-    //try running the program and seeing how it works
-    //
-    //note that at the end 2 arrays are printed, those were for my previous testing purposes
-
     //gets user's input and accordingly updates systemOfEquations
     private void UserInput() {
         Scanner userInput = new Scanner(System.in);
@@ -23,7 +19,17 @@ public class SystemLinearEquationsInThreeVariables {
         }
         systemOfEquations = new int[amountOfEquations][4];
         System.out.println("There will be " + amountOfEquations + " equations in your system of linear equations.\n");
-        //ask for the number of variables
+        //ask for the number of variables UPDATED
+        for (int i = 0; i < amountOfEquations; i++){
+            System.out.println("Equation " + (i + 1));
+            System.out.println("Now input 4 numbers. These will be the coefficients for this equation: ()x + ()y + ()z = () ");
+            for (int x = 0; x < 4; x++){
+                systemOfEquations[i][x] = userInput.nextInt();
+            }
+        }
+
+        /*
+        ask for the number of variables
         for (int i = 0; i < amountOfEquations; i++) {
             int numVariables = 0;
             System.out.println("Equation " + (i + 1));
@@ -52,6 +58,7 @@ public class SystemLinearEquationsInThreeVariables {
                 systemOfEquations[i][x] = userInput.nextInt();
             }
         }
+        */
     }
 
     //driver function
