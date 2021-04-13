@@ -1,3 +1,4 @@
+
 import java.util.Scanner;
 import java.util.Arrays;
 
@@ -10,7 +11,7 @@ systems of equations are represented as int[][]
  */
 
 public class SystemLinearEquationsInThreeVariables {
-    int[][] systemOfEquations;
+    double[][] systemOfEquations;
 
     //gets an expression and plugs it into the system
     private void PlugInValue(int[] inputting, int equationNum, String variable) {
@@ -30,7 +31,7 @@ public class SystemLinearEquationsInThreeVariables {
                 varIndex = 100;
         }
         //coefficient to multiply to plugged in expression
-        int coefficientMultiply = systemOfEquations[equationNum][varIndex];
+        double coefficientMultiply = systemOfEquations[equationNum][varIndex];
         for (int i = 0; i < inputting.length; i++) {
             //when isolating one variable in the equation, all the values in the expression are divided by the isolated variable's coefficient
             inputting[i] /= inputting[varIndex];
@@ -53,21 +54,34 @@ public class SystemLinearEquationsInThreeVariables {
         System.out.println("\n ----New Problem----\n");
         int amountOfEquations = 0;
         // asking for the number of equations
-        while (amountOfEquations <= 0) {
+        while (amountOfEquations <= 1) {
             System.out.print("How many linear equations are in your system of equations? ");
             amountOfEquations = userInput.nextInt();
-            if (amountOfEquations <= 0) {
-                System.out.println("That is not a viable input.\n");
+            if (amountOfEquations <= 1) {
+                System.out.println("That is not a viable input. Specifically, the program cannot solve it or it's a ridiculous number.\n");
             }
         }
-        systemOfEquations = new int[amountOfEquations][4];
+        systemOfEquations = new double[amountOfEquations][4];
         System.out.println("There will be " + amountOfEquations + " equations in your system of linear equations.\n");
-        // ask for the number of variables UPDATED
+        // asking what the coefficients are (this is based on the amount of equations) UPDATED UPDATED
         for (int i = 0; i < amountOfEquations; i++) {
             System.out.println("Equation " + (i + 1));
-            System.out.println("Now input 4 numbers. These will be the coefficients for this equation: ()x + ()y + ()z = () ");
+            int inputPrintingAmount;
+            if (amountOfEquations == 2){
+                inputPrintingAmount = 3;
+                System.out.println("Now input " + inputPrintingAmount + " numbers. These will be the coefficients for this equation: ()x + ()y = () ");
+            }
+            else{
+                inputPrintingAmount = 4;
+                System.out.println("Now input " + inputPrintingAmount + " numbers. These will be the coefficients for this equation: ()x + ()y + ()z = () ");
+            }
             for (int x = 0; x < 4; x++) {
-                systemOfEquations[i][x] = userInput.nextInt();
+                if (amountOfEquations == 2 && x == 2){
+                    systemOfEquations[i][2] = 0;
+                }
+                else{
+                    systemOfEquations[i][x] = userInput.nextDouble();
+                }
             }
         }
         /*
@@ -106,7 +120,9 @@ public class SystemLinearEquationsInThreeVariables {
     // driver function
     private void Solve() {
         UserInput();
-        System.out.println(Arrays.toString(systemOfEquations[0]) + " " + Arrays.toString(systemOfEquations[1]));
+        for (int i = 0; i < systemOfEquations.length; i++){
+            System.out.print(Arrays.toString(systemOfEquations[i]));
+        }
     }
 
     public static void main(String[] args) {
